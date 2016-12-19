@@ -112,7 +112,7 @@ def find_k(max_k, splits, use_kfolds=False):
     ax.set_ylabel('Accuracy')
     ax.set_title('KNearestNeighbors varying K')
     ax.set_xticks(range(1, max_k+1))
-    plt.savefig('find_k.png')
+    plt.savefig('./imgs/find_k.png')
     plt.show()
 
 def scree_plot(pca, title=None):
@@ -163,7 +163,7 @@ if __name__ == '__main__':
     # scree_plot(pca, title='Principal Component Analysis')
 
     'print results of k_folds on knn module'
-    print 'kfolds,', train_score_one([reduced_data, pca.transform(x_test), y_train, y_test], k=1, use_kfolds=True)
+    # print 'kfolds,', train_score_one([reduced_data, pca.transform(x_test), y_train, y_test], k=1, use_kfolds=True)
 
     'PCA occurs here'
     knn.fit(reduced_data, y_train)
@@ -171,4 +171,4 @@ if __name__ == '__main__':
     print ConfusionMat(y_test, knn.predict(pca.transform(x_test)))
 
     'uncomment for running find_k function'
-    # find_k(max_k=20, splits=[reduced_data, pca.transform(x_test), y_train, y_test], use_kfolds=False)
+    find_k(max_k=20, splits=[reduced_data, pca.transform(x_test), y_train, y_test], use_kfolds=True)
